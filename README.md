@@ -1,8 +1,12 @@
-🩺 Diabetic Retinopathy Detection
-This deep learning project detects the severity of diabetic retinopathy from retinal fundus images. Using transfer learning with ResNet18, the model classifies images into five categories: No DR, Mild, Moderate, Severe, and Proliferative DR.
+# 🩺 Diabetic Retinopathy Detection
 
-📁 Project Structure-
+A deep learning project to detect the severity of diabetic retinopathy using retinal fundus images. The model classifies images into 5 stages: **No DR**, **Mild**, **Moderate**, **Severe**, and **Proliferative DR**, using transfer learning with ResNet18.
 
+---
+
+## 📁 Project Structure
+
+```
 colored_images/
 ├── Mild/
 ├── Moderate/
@@ -17,55 +21,52 @@ train.csv
 train.ipynb
 main.py
 retino_model.h5 (Generated after training)
+```
 
-🔍 Dataset
-Source: Folder colored_images/ with 5 subfolders for each class
+---
 
-Labels: Stored in train.csv
+## 🔍 Dataset
 
-Classes:
+- **Directory**: `colored_images/` with subfolders for each DR category
+- **Labels**: Provided in `train.csv`
+- **Classes**:
+  - `No_DR`
+  - `Mild`
+  - `Moderate`
+  - `Severe`
+  - `Proliferate_DR`
 
-No_DR
+---
 
-Mild
+## 🧠 Model Details
 
-Moderate
+- Framework: **TensorFlow / Keras**
+- Architecture: **ResNet18** via transfer learning
+- Classification Type: Multiclass (5 classes)
+- Final Model Output: `retino_model.h5`
+- Achieved Accuracy: **69%**
 
-Severe
+---
 
-Proliferate_DR
+## 🚀 How to Run
 
-🧠 Model
-Framework: TensorFlow / Keras
+### Step 1: Train the Model
 
-Architecture: ResNet18 (Transfer Learning)
-
-Classification: 5-Class Multiclass
-
-Output File: retino_model.h5
-
-🚀 How to Run
-Train the Model
-
-Open and run all cells in train.ipynb:
-
-This will generate and save the trained model as retino_model.h5.
-
-Start the Web App
-
-After training, run the Flask app:
+````bash
+jupyter notebook train.ipynb
+````
+Step 2: Start the Flask Web App
+````bash
 python main.py
-Then open http://127.0.0.1:5000/ in your browser to test predictions.
+````
+Then go to http://127.0.0.1:5000/ in your browser.
 
 ✅ Features
-5-Class diabetic retinopathy detection
+Classifies 5 stages of diabetic retinopathy
 
-Achieved 69% accuracy
+Transfer learning with ResNet18
 
-User-friendly web interface
+Web-based prediction interface using Flask
 
-ResNet18-based transfer learning
-
-
-
+Real-world medical dataset with labeled fundus images
 
