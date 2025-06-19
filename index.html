@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Retinopathy Detection</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<!--using tailwind css and its predefined classes now-->
+<body class="bg-gray-100 min-h-screen flex items-center justify-center px-4">
+  <div class="bg-white shadow-xl rounded-2xl p-8 max-w-md w-full">
+    <h1 class="text-2xl font-bold mb-4 text-center">Retinopathy Detection</h1>
+
+    <form id="uploadForm" class="space-y-4">
+      <input type="file" id="fileInput" name="file" accept="image/*" required class="block w-full text-sm text-gray-600">
+      <img id="preview" class="mt-2 max-h-64 mx-auto hidden" />
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-xl transition">Predict</button>
+    </form>
+
+    <div id="result" class="mt-6 text-center hidden">
+      <h2 class="text-lg font-semibold">Prediction:</h2>
+      <p id="class" class="text-xl font-bold text-blue-700"></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('uploadForm');
+    const preview = document.getElementById('preview');
+    const resultBox = document.getElementById('result');
+    const classText = document.getElementById('class');
+
+    document.getElementById('fileInput').addEventListener('change', e => {
+      const file = e.target.files[0];
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.classList.remove('hidden');
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const file = document.getElementById('fileInput').files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await fetch('/predict', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        classText.textContent = data.class;
+        resultBox.classList.remove('hidden');
+      } else {
+        classText.textContent = "Error";
+        resultBox.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
