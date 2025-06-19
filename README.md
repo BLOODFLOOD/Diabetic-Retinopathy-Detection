@@ -26,7 +26,7 @@ retino_model.h5 (Generated after training)
 ---
 
 ## 🔍 Dataset
-
+link-https://www.kaggle.com/code/kushalkumar8906kumar/hiee-project/notebook
 - **Directory**: `colored_images/` with subfolders for each DR category
 - **Labels**: Provided in `train.csv`
 - **Classes**:
